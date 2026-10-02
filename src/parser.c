@@ -9,6 +9,18 @@
 static Token cur;
 static Token nxt;
 
+/* 파서도 깊이를 세야 한다. 괄호는 노드를 만들지 않으므로(primary 가 inner 를 그대로
+   돌려준다) 검사 패스의 중첩 깊이에 세어지지 않는다. 그래서 괄호를 수천 겹 쌓으면
+   검사 패스를 통과하고 파서가 C 스택을 넘겨 죽었다. 단항 연산자 사슬도 같다. */
+static int parseDepth = 0;
+
+static void enterDepth(int line) {
+  if (++parseDepth > SL_MAX_DEPTH) {
+    slFatal(line, "식의 중첩 깊이가 %d을 넘었다", SL_MAX_DEPTH);
+  }
+}
+static void leaveDepth(void) { parseDepth--; }
+
 static void bump(void) {
   cur = nxt;
   nxt = slLexNext();
@@ -135,7 +147,9 @@ static Node* unary(void) {
     bump();
     Node* n = slNewNode(N_UNARY, line);
     n->as.un.op = op;
+    enterDepth(line);
     n->as.un.operand = unary();
+    leaveDepth();
     return n;
   }
   return call();
@@ -190,6 +204,7 @@ static Node* orLevel(void) {
 /* assign → IDENT "=" assign | or
    IDENT 다음 토큰이 "=" 이면 대입이다. 미리 보기 한 번으로 완전히 갈린다. */
 static Node* assignment(void) {
+  enterDepth(cur.line);
   if (check(T_IDENT) && checkNext(T_EQ)) {
     int line = cur.line;
     ObjString* name = identName();
@@ -197,9 +212,12 @@ static Node* assignment(void) {
     Node* n = slNewNode(N_ASSIGN, line);
     n->as.assign.name = name;
     n->as.assign.value = assignment();
+    leaveDepth();
     return n;
   }
-  return orLevel();
+  Node* out = orLevel();
+  leaveDepth();
+  return out;
 }
 
 static Node* expression(void) { return assignment(); }
@@ -277,6 +295,7 @@ static Node* declaration(void) {
 }
 
 void slParse(const char* source, NodeList* out) {
+  parseDepth = 0;
   slLexInit(source);
   nxt = slLexNext();
   bump();
