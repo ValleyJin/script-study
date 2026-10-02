@@ -1,0 +1,11 @@
+print 1 + 2 * 3 - 4;
+print 2 * 3 + 4 * 5;
+print 1 - 2 - 3;
+print 2 / 3 / 4;
+print !!true;
+print -1 * 2;
+print 1 < 2 == true;
+print 1 + 2 < 3 and 4 > 5 or 6 == 7;
+var x = 0;
+var y = 0;
+x = y = 7;

@@ -1,0 +1,14 @@
+print 1;
+print -3;
+print 0.5;
+print nil;
+print true;
+print false;
+print "hello";
+print 1 / 0;
+print 0 - 1 / 0;
+print "a" == "a";
+print 1 == "1";
+print nil or 3;
+print 1 and 2;
+print !nil;
