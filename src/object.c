@@ -50,8 +50,15 @@ ObjFunction* slNewFunction(ObjString* name, int arity) {
   ObjFunction* f = (ObjFunction*)allocObj(sizeof(ObjFunction), OBJ_FUNCTION);
   f->name = name;
   f->arity = arity;
-  f->body = NULL;
+  f->fnNode = NULL;
   f->chunk = NULL;
   f->upvalueCount = 0;
   return f;
+}
+
+ObjClosure* slNewClosure(ObjFunction* fn, Env* env) {
+  ObjClosure* c = (ObjClosure*)allocObj(sizeof(ObjClosure), OBJ_CLOSURE);
+  c->fn = fn;
+  c->env = env;
+  return c;
 }

@@ -2,6 +2,7 @@
 #define SL_VALUE_H
 
 #include "common.h"
+#include "lexer.h"
 
 typedef struct Obj Obj;
 typedef struct ObjString ObjString;
@@ -42,5 +43,17 @@ bool slEqual(Value a, Value b);
 
 /* docs/02 의 "print 가 찍는 글자" 표. 줄바꿈은 붙이지 않는다. */
 void slPrintValue(FILE* out, Value v);
+
+/* 연산자의 타입 검사와 오류 문구를 여기 둔다. 두 갈래가 이것을 함께 쓴다.
+   각자 짜면 문구가 어긋나고 4단계의 글자 대조가 깨진다.
+   타입이 어긋나면 런타임 오류를 내므로 돌아오지 않는다. */
+Value slAdd(Value a, Value b, int line);          /* 수 둘 또는 문자열 둘 */
+Value slArith(TokenType op, Value a, Value b, int line);
+Value slCompare(TokenType op, Value a, Value b, int line);
+Value slNegate(Value a, int line);
+
+/* 호출할 때 걸러야 하는 것. 둘 다 두 갈래가 함께 쓴다. */
+void slCheckCallable(Value callee, int line);
+void slCheckArity(int want, int got, int line);
 
 #endif

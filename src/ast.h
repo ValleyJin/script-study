@@ -28,6 +28,7 @@ typedef struct {
   ObjString** params;
   int paramCount;
   Node* body;             /* N_BLOCK */
+  ObjFunction* fn;        /* 트리 순회가 노드마다 하나 만들어 두고 다시 쓴다 */
 } FunBody;
 
 struct Node {

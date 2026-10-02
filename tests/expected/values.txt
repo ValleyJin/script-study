@@ -1,0 +1,14 @@
+1
+-3
+0.5
+nil
+true
+false
+hello
+inf
+-inf
+true
+false
+3
+2
+true

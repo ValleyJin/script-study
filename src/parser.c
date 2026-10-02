@@ -46,6 +46,7 @@ static void funTail(Node* n) {
   expect(T_LPAREN);
   n->as.fun.params = NULL;
   n->as.fun.paramCount = 0;
+  n->as.fun.fn = NULL;
   if (!check(T_RPAREN)) {
     int cap = 0;
     do {
