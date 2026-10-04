@@ -1,4 +1,4 @@
-# docs/02 의 "어떻게 재는가" 절대로 -O2 로 잰다.
+# study/02 의 "어떻게 재는가" 절대로 -O2 로 잰다.
 # 두 갈래를 한 실행 파일에 넣으므로 빌드 옵션은 플래그가 같다.
 CC      ?= cc
 CFLAGS  ?= -std=c11 -O2 -Wall -Wextra -Wpedantic -Wshadow -Wconversion
@@ -28,7 +28,7 @@ src/%.o: src/%.c
 test: $(BIN)
 	./run-tests.sh
 
-# 깨진 입력을 만들어 넣는다. docs/03 의 "지나간 길만 본다" 절이 쓰는 도구다.
+# 깨진 입력을 만들어 넣는다. study/03 의 "지나간 길만 본다" 절이 쓰는 도구다.
 fuzz: $(BIN)
 	python3 evidence/fuzz.py ./$(BIN)
 

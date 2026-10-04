@@ -1,7 +1,7 @@
 # `Value` 구조체가 64비트에서 몇 바이트인가
 
 2026-10-01, darwin arm64, Apple clang version 17.0.0 (clang-1700.6.3.2).
-`docs/02-만들-언어의-범위.md`의 값 표현 절이 이 결과를 근거로 삼는다.
+`study/02-만들-언어의-범위.md`의 값 표현 절이 이 결과를 근거로 삼는다.
 
 소스: `evidence/value-size.c`
 

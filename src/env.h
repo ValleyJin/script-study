@@ -5,7 +5,7 @@
 #include "object.h"
 #include "table.h"
 
-/* docs/02 대로 (이름, Value) 짝의 선형 배열이다. 블록 환경에 변수가 서너 개뿐일 때는
+/* study/02 대로 (이름, Value) 짝의 선형 배열이다. 블록 환경에 변수가 서너 개뿐일 때는
    선형 탐색이 해시보다 빠르다. 체인 맨 끝의 전역만 해시 표다.
    실험 2에서 이 배열을 슬롯 배열로 바꾼다. */
 typedef struct Env {

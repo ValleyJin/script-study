@@ -15,7 +15,7 @@ static void execStmt(Node* n, Env* env);
 static void execList(NodeList* list, Env* env);
 
 /* 노드마다 ObjFunction 을 하나 만들어 두고 다시 쓴다. ObjClosure 는 평가할 때마다
-   새로 만든다. docs/02 의 값 표현 절에 적은 대로다. */
+   새로 만든다. study/02 의 값 표현 절에 적은 대로다. */
 static ObjClosure* makeClosure(Node* n, Env* env) {
   if (n->as.fun.fn == NULL) {
     ObjFunction* f = slNewFunction(n->as.fun.name, n->as.fun.paramCount);

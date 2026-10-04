@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""깨진 입력을 만들어 sl 에 넣는다. docs/03 의 "지나간 길만 본다" 절이 쓰는 도구다.
+"""깨진 입력을 만들어 sl 에 넣는다. study/03 의 "지나간 길만 본다" 절이 쓰는 도구다.
 
 세 갈래로 만든다.
   1. 흐트러뜨리기 — tests/*.sl 을 잘라내고, 바이트를 바꾸고, 바이트를 끼운다.
@@ -34,7 +34,7 @@ def perturb(sources, rng, n_each=60):
             yield bytes(b)
 
 def limits():
-    """한도 아래위를 겨눈다. docs/02 의 상한은 깊이 128, 지역 255, 인자 255다."""
+    """한도 아래위를 겨눈다. study/02 의 상한은 깊이 128, 지역 255, 인자 255다."""
     for n in (1, 127, 128, 129, 300, 5000):
         yield f"print {'('*n}1{')'*n};\n".encode()
         yield f"print {'-'*n}1;\n".encode()

@@ -62,7 +62,7 @@ ObjString* slCopyString(const char* chars, int length);
 
 ObjFunction* slNewFunction(ObjString* name, int arity);
 
-/* docs/02 대로 fun 선언이나 식을 평가할 때마다 새로 만든다. 잡은 변수가 없어도
+/* study/02 대로 fun 선언이나 식을 평가할 때마다 새로 만든다. 잡은 변수가 없어도
    다시 쓰지 않는다. 안 그러면 make() == make() 의 답이 두 갈래에서 갈린다. */
 ObjClosure* slNewClosure(ObjFunction* fn, Env* env);
 
