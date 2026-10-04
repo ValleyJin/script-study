@@ -1,2 +1,12 @@
+# 빌드 산출물
+sl
+sl-ubsan
+*.o
+*.d
+*.dSYM/
+*.profraw
+*.profdata
+
+# 도구가 남기는 것
 __pycache__/
 luac.out
